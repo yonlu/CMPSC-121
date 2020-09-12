@@ -15,7 +15,7 @@ int main() {
 
     // Calculates diameter of a circle and then prints it back.
     diameter = radius * 2;
-    cout << "The diameter of a circle is " << diameter << "m\n";
+    cout << "The diameter of the circle is " << diameter << "m\n";
 
     // Calculates area of a circle.
     area = (M_PI * pow(radius,2));
