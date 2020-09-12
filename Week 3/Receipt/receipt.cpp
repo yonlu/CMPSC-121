@@ -7,20 +7,23 @@ int main() {
     // Setting fixed precision for currency standards
     cout << fixed << setprecision(2);
 
-    string firstItem = "";
+    string firstItem;
     double firstPrice = 0;
 
-    string secondItem = "";
+    string secondItem;
     double secondPrice = 0;
 
     cout << "What is the name of the first item: ";
-    cin >> firstItem;
+    getline(cin, firstItem);
 
     cout << "How much did it cost? ";
     cin >> firstPrice;
 
+    // Flush newline character out of the buffer
+    cin.ignore();
+
     cout << "What is the name of the second item: ";
-    cin >> secondItem;
+    getline(cin, secondItem);
 
     cout << "How much did it cost? ";
     cin >> secondPrice;
