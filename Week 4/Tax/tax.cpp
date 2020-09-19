@@ -6,7 +6,10 @@ using namespace std;
 int main() {
     double price = 0;
     string state;
-    double tax = 0;
+    double tax = 0.0;
+
+    // tmp variable to clear buffer
+    string tmp;
 
     cout << fixed << setprecision(2);
 
@@ -14,7 +17,7 @@ int main() {
     cin >> price;
 
     // Clear cin buffer
-    cin.ignore();
+    getline(cin, tmp);
 
     cout << "What state are you purchasing in? ";
     getline(cin, state);
@@ -28,6 +31,7 @@ int main() {
     else if (state == "NH") {
         tax = 0.00;
     } else {
+        cout << "This program cannot calculate tax in that state...shutting down." << endl;
         return 1;
     }
 
