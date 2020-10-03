@@ -22,12 +22,14 @@ int main() {
      * If the exception is false, it might be divisible by 4 (year % 4 == 0)
      * If the last check is true, it is a leap year.
      */
+    // Not sure if this counts for the twist
     //isLeapYear = year % 100 == 0 ? year % 400 == 0 : year % 4 == 0;
 
-    if (year % 100 !=0 && year % 4 == 0) {
+    // If else variant for the twist, more straightforward logic
+    if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
         isLeapYear = true;
     } else {
-       isLeapYear = year % 400 == 0;
+        isLeapYear = false;
     }
 
     if (isLeapYear) {
