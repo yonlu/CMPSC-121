@@ -3,7 +3,8 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     int rows = 0;
     int columns = 0;
     int tableHeader = 1;
@@ -12,41 +13,50 @@ int main() {
     bool isRangeAcceptable = false;
     cout << "Let's build a multiplication table!" << endl;
 
-    do {
+    do
+    {
         // Get rows
         cout << "Enter the number of rows (1 to 12 inclusive): ";
         cin >> rows;
 
         // If it is between 1 and 12, inclusive.
-        if (rows >= 1 && rows <= 12) {
+        if (rows >= 1 && rows <= 12)
+        {
             // Range is acceptable.
-           isRangeAcceptable = true;
-        } else {
-           isRangeAcceptable = false;
-           cout << "Invalid input; try again!" << endl;
+            isRangeAcceptable = true;
+        }
+        else
+        {
+            isRangeAcceptable = false;
+            cout << "Invalid input; try again!" << endl;
         }
 
-    } while(!isRangeAcceptable); // If the range is NOT acceptable, ask again.
+    } while (!isRangeAcceptable); // If the range is NOT acceptable, ask again.
 
-    do {
+    do
+    {
         // Get columns
         cout << "Enter the number of columns (1 to 12 inclusive): ";
         cin >> columns;
 
         // If it is between 1 and 12, inclusive.
-        if (columns >= 1 && columns <= 12) {
+        if (columns >= 1 && columns <= 12)
+        {
             // Range is acceptable.
             isRangeAcceptable = true;
-        } else {
+        }
+        else
+        {
             isRangeAcceptable = false;
             cout << "Invalid input; try again!" << endl;
         }
 
-    } while(!isRangeAcceptable); // If the range is NOT acceptable, ask again.
+    } while (!isRangeAcceptable); // If the range is NOT acceptable, ask again.
 
     // Print table headers, from 1 to 12 (inclusive), according to column's value
     cout << setw(10); // Initial spacing for initial empty table cell, 0 is not in a multiplication table
-    for (int i = 0; i < columns; i++) {
+    for (int i = 0; i < columns; i++)
+    {
         cout << tableHeader++ << setw(5); // Spacing between table headers
     }
 
@@ -64,10 +74,12 @@ int main() {
      * product = 3 * 4 => 12
      *
      */
-    for (int i = 1; i <= rows; i++) { // Initialize at 1, so we don't up doing multiplication with 0.
+    for (int i = 1; i <= rows; i++)
+    {                                      // Initialize at 1, so we don't up doing multiplication with 0.
         cout << setw(5) << headerColumn++; // setw(5) makes triple digit numbers better to read, like 12 * 12 = 144
-        for (int j = 1; j <= columns; j++) {
-            cout << setw(5) << i*j;
+        for (int j = 1; j <= columns; j++)
+        {
+            cout << setw(5) << i * j;
         }
         cout << endl;
     }

@@ -12,22 +12,22 @@ int main() {
     int firstScore, secondScore, thirdScore, fourthScore = 0;
 
     do {
-        cout << "Enter the first score: ";
+        cout << "Enter the first test score: ";
         cin >> firstScore;
     } while(getScore(firstScore) == -1);
 
     do {
-        cout << "Enter the second score: ";
+        cout << "Enter the test second score: ";
         cin >> secondScore;
     } while(getScore(secondScore) == -1);
 
     do {
-        cout << "Enter the third score: ";
+        cout << "Enter the test third score: ";
         cin >> thirdScore;
     } while(getScore(thirdScore) == -1);
 
     do {
-        cout << "Enter the second score: ";
+        cout << "Enter the test fourth score: ";
         cin >> fourthScore;
     } while(getScore(fourthScore) == -1);
 
@@ -48,15 +48,13 @@ int getScore(int score) {
 }
 
 double calcAverage(int firstScore, int secondScore, int thirdScore, int fourthScore) {
-    // dropLowest will call a ascending sorting function.
+    // dropLowest will call an ascending order sorting function.
     int lowestScore = dropLowest(firstScore, secondScore, thirdScore, fourthScore);
 
+    cout << "Lowest score is: " << lowestScore << endl;
     return ((firstScore + secondScore + thirdScore + fourthScore - lowestScore ) / 3.0);
 }
 
-/*
- * Not sure if I should drop a score in case the lowest score shows up more than once.
- */
 int dropLowest(int firstScore, int secondScore, int thirdScore, int fourthScore) {
    int scoreList[] = { firstScore, secondScore, thirdScore, fourthScore };
    sortScores(scoreList);
@@ -66,7 +64,7 @@ int dropLowest(int firstScore, int secondScore, int thirdScore, int fourthScore)
 }
 
 void sortScores(int scoreList[]) {
-    const int ARRAY_SIZE = 4; // ugly!
+    const int ARRAY_SIZE = 4;
 
     // Bubble sort, lowest score should be in the first element of the array now.
     for (int i = 0; i < ARRAY_SIZE; i++) {

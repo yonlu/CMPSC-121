@@ -19,15 +19,17 @@ int main() {
     cout << "Enter a starting height in meters: ";
     cin >> height;
 
-    double maxHeight = computeDistance(speed, height);
-    double timeOfFlight = 2 * speed / 9.8;
-    double timeMaxHeight = timeOfFlight/2;
+    double distance = computeDistance(speed, height);
+    double maxHeight = computeMaxHeight(speed, height);
 
-    cout << "PROJECTILE IMPACT AFTER " << setprecision(1) << timeOfFlight << setprecision(2) <<
-    " SECONDS" << endl;
+//    cout << "PROJECTILE IMPACT AFTER " << setprecision(1) << timeOfFlight << setprecision(2) <<
+//    " SECONDS" << endl;
+//
+//    cout << "Max height was at " << timeMaxHeight << " seconds";
+//    cout << " with a height of " << maxHeight << " meters." << endl;
 
-    cout << "Max height was at " << timeMaxHeight << " seconds";
-    cout << " with a height of " << maxHeight << " meters." << endl;
+cout << distance << endl;
+cout << maxHeight << endl;
 
     return 0;
 }
@@ -45,17 +47,20 @@ double computeDistance(double initialSpeed, double initialHeight) {
      *
      */
 
-    double distanceAboveGround = 0.0;
-    double maxHeight = computeMaxHeight(initialSpeed, initialHeight);
-    double timeOfFlight = 2 * initialSpeed / 9.8;
+    /*
+     * Yf = Yi + Vyi * t + 1/2 a * t^2
+     *
+     * 0 = initialHeight + initialSpeed * t + 1/2 * 9.8 * t^2
+     */
+
+    double distanceAboveGround = initialHeight;
 
     // Printing table of values, 0.1 second intervals
-    for(double i = 0; i <= timeOfFlight; i += 0.1) {
-        distanceAboveGround = -1 * 0.5 * 9.8 * pow(i, 2) + initialSpeed * i + initialHeight;
-        cout << setprecision(1) << i << setprecision(2) << setw(10) << distanceAboveGround << endl;
+    for(double i = 0; distanceAboveGround >= 0; i += 0.1) {
+       distanceAboveGround = initialHeight + initialSpeed * i + 0.5 * -9.8 * pow(i, 2);
+       cout << setprecision(1) << i << setprecision(2) << setw(10) << distanceAboveGround << endl;
     }
 
-
-    return maxHeight;
+    return distanceAboveGround;
 }
 

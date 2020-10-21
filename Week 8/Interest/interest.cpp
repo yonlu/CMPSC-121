@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
 using namespace std;
 
@@ -16,21 +17,21 @@ int main() {
     do {
         cout << "What is the initial amount deposited (in dollars): ";
         cin >> principal;
-    } while(validateInput(principal) ==  -1.0); // If principal is negative, ask for a new input.
+    } while(validateInput(principal) ==  -1.0); // If principal is 0 or negative, ask for a new input.
 
     do {
         cout << "What is the interest rate: ";
         cin >> interestRate;
-    } while (validateInput(interestRate) == -1.0); // If interest rate is negative, ask for a new input.
+    } while (validateInput(interestRate) == -1.0); // If interest rate is 0 or negative, ask for a new input.
 
     do {
         cout << "What is the amount of time in months: ";
         cin >> timeInMonths;
-    } while(validateInput(timeInMonths) == -1); // If month is not between 1 and 12, ask for a new input.
+    } while(validateInput(timeInMonths) == -1); // If month is not between 1 and 12 (inclusive), ask for a new input.
 
     total = calcFutureValue(principal, interestRate, timeInMonths);
-    cout << fixed << setprecision(2);
 
+    cout << fixed << setprecision(2);
     cout << "The total value of the account will be: $" << total << endl;
 
     return 0;
@@ -50,8 +51,8 @@ double calcFutureValue(double principal, double interest, int months) {
 
 // Principal or Interest rate can not be negative!
 double validateInput(double principalOrInterest) {
-    if (principalOrInterest <= 0) {
-        cout << "Please enter a positive value!" << endl;
+    if(principalOrInterest <= 0) {
+       cout << "Please enter a positive non-zero value!" << endl;
        return -1.0;
     } else {
         return principalOrInterest;
@@ -60,7 +61,7 @@ double validateInput(double principalOrInterest) {
 
 // Time must be in months, therefore it should be between 1 and 12 (inclusive).
 int validateInput(int months) {
-    if (months >= 0 && months <= 12) {
+    if (months >= 1 && months <= 12) {
         return months;
     } else {
         cout << "Please enter a valid value for month! Between 1 and 12." << endl;
