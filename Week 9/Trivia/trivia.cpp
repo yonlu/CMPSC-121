@@ -11,10 +11,12 @@ int main() {
     bool answers[4];
     int score = 0;
 
-    cout << "Let's build a trivia of true or false questions!" << endl;
+    cout << "Let's build a trivia of true or false questions!";
+    cout << endl;
 
     // Get questions for the trivia:
     for (int i = 0; i < 4; i++) {
+        cout << endl;
         // Ask user for a question
         string question;
         cout << "Please enter Question " << i+1 << ": " << endl;
@@ -22,23 +24,25 @@ int main() {
         questions[i] = question;
 
         // Ask user for the corresponding answer, and validate it
+        // Only accept valid answers, T, t, True, true; F, f, False and false.
         answers[i] = getUserAnswer();
     }
 
     cout << endl;
     cout << "Let's play the game!" << endl;
-    cout << endl;
 
     string  answer;
     for (int i = 0; i < 4; i++) {
+       cout << endl;
        cout << "Question " << i+1 << ":" << endl;
        cout << questions[i] << endl;
 
        cout << "Please enter a guess: (T, t, True, true, F, f, False, false):" << endl;
-       cin >> answer;
+       getline(cin, answer);
         bool flagIsTriggered; // Keep looping until flag is triggered
         do {
             if (!(answer.compare("T") && answer.compare("t") && answer.compare("True") && answer.compare("true"))) {
+
                 flagIsTriggered = false;
                 if(verifyAnswer(true, answers[i])) {
                     score++;
@@ -57,6 +61,8 @@ int main() {
             }
         } while(flagIsTriggered);
     }
+
+    cout << endl;
 
     cout << "You guessed " << score << " out of 4 questions correctly!" << endl;
 
@@ -88,7 +94,7 @@ bool getUserAnswer() {
             cout << "Please enter Answer " << index << " (T, t, True, true, F, f, False, false):" << endl;
             getline(cin, answer);
         }
-    } while(flagIsTriggered); // clion is being dumb
+    } while(flagIsTriggered); // clion eh meio burro as vezes
 }
 
 bool verifyAnswer(bool userAnswer, bool realAnswer) {
