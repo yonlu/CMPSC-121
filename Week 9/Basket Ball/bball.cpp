@@ -15,15 +15,18 @@ int main() {
     int totalHomeScores = 0;
 
     for (int i = 1; i < 5; i++) {
+        cout << i << "Q away team score:" << endl;
         do {
-            cout << i << "Q away team score: ";
+            cout << "Please enter a number (0 or greater): ";
             cin >> score;
             if(handleScore(score) >= 0) {
                awayScores.push_back(score);
             }
         } while(score < 0);
+
+        cout << i << "Q home team score:" << endl;
         do {
-            cout << i << "Q home team score: ";
+            cout << "Please enter a number (0 or greater): ";
             cin >> score;
             if(handleScore(score) >= 0) {
                 homeScores.push_back(score);
@@ -46,15 +49,19 @@ int main() {
     int i = 5;
     while(isTie) {
         cout << "It's a tie! Let's play another quarter." << endl;
+
+        cout << i << "Q away team score:" << endl;
         do {
-            cout << i << "Q away team score: ";
+            cout << "Please enter a number (0 or greater): ";
             cin >> score;
             if(handleScore(score) >= 0) {
                 awayScores.push_back(score);
             }
         } while(score < 0);
+
+        cout << i << "Q home team score:" << endl;
         do {
-            cout << i << "Q home team score: ";
+            cout << "Please enter a number (0 or greater): ";
             cin >> score;
             if(handleScore(score) >= 0) {
                 homeScores.push_back(score);
