@@ -83,7 +83,6 @@ double validateValues(double number, bool& flagIsTriggered) {
         return number;
     } else {
         cout << "Please enter a positive number, or -1 to terminate." << endl;
-        cout << endl;
         return -1;
     }
 
