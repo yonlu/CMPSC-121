@@ -69,88 +69,145 @@ int main() {
     return 0;
 }
 
-void getUserSelection(int* userChoicePointer) {
+void getUserSelection(int* choice) {
     cout << "Make your choice (1: rock, 2: paper, 3: scissors, -1: quit) ";
-    int choice = 0;
-    cin >> choice;
+    int userInput = 0;
+    cin >> userInput;
     if(cin.fail()) {
-        choice = 0;
-        *userChoicePointer = choice;
+        userInput = 0;
+        *choice = userInput;
         return;
     }
-    if (choice == -1) {
-        *userChoicePointer = -1;
+    if (userInput == -1) {
+        *choice = -1;
         return;
     }
-    if (choice > 0 && choice < 4) {
-        *userChoicePointer = choice;
+    if (userInput > 0 && userInput < 4) {
+        *choice = userInput;
     } else {
-        *userChoicePointer = choice;
+        *choice = userInput;
        cout << "Please enter a valid choice."
        << " (1: rock, 2: paper, 3: scissors, -1: quit)" << endl;
     }
 }
 
-void determineWinner(int uChoice, int cChoice, int* uScore, int* cScore) {
-    if(uChoice == -1) {
-        return;
-    }
-    /*
-     * User wins Scenario:
-     * let computerChoice = 3
-     * let userChoice = 1
-     *
-     * computerChoice % 3 + 1 == userChoice ?
-     * 3 % 3 => 0
-     * 0 + 1 => 1
-     * Is 1 == 1 ? => True
-     * User wins.
-     *
-     *
-     * User loses Scenario:
-     * let computerChoice = 1
-     * let userChoice = 3
-     *
-     * computerChoice % 3 + 1 == userChoice ?
-     * 1 % 3 => 1
-     * 1 + 1 => 2
-     * Is 2 == 3 ? => False
-     *
-     * check else if
-     * userChoice % 3 + 1 == computerChoice
-     * 3 % 3 => 0
-     * 0 + 1 => 1
-     * Is 1 == 1 ? => True
-     *
-     * Users loses.
-     *
-     * It's a tie Scenario:
-     * let computerChoice = 1
-     * let userChoice = 1
-     *
-     * computerChoice % 3 + 1 == userChoice ?
-     * 1 % 3 => 1
-     * 1 + 1 => 2
-     * Is 2 == 1 ? => False
-     *
-     * check else if
-     * userChoice % 3 + 1 == computerChoice
-     * 1 % 3 => 1
-     * 1 + 1 => 2
-     * Is 2 == 1 ? => false
-     *
-     * It's a tie.
-     */
+//void determineWinner(int uChoice, int cChoice, int* uScore, int* cScore) {
+//    if(uChoice == -1) {
+//        return;
+//    }
+//    /*
+//     * User wins Scenario:
+//     * let computerChoice = 3
+//     * let userChoice = 1
+//     *
+//     * computerChoice % 3 + 1 == userChoice ?
+//     * 3 % 3 => 0
+//     * 0 + 1 => 1
+//     * Is 1 == 1 ? => True
+//     * User wins.
+//     *
+//     *
+//     * User loses Scenario:
+//     * let computerChoice = 1
+//     * let userChoice = 3
+//     *
+//     * computerChoice % 3 + 1 == userChoice ?
+//     * 1 % 3 => 1
+//     * 1 + 1 => 2
+//     * Is 2 == 3 ? => False
+//     *
+//     * check else if
+//     * userChoice % 3 + 1 == computerChoice
+//     * 3 % 3 => 0
+//     * 0 + 1 => 1
+//     * Is 1 == 1 ? => True
+//     *
+//     * Users loses.
+//     *
+//     * It's a tie Scenario:
+//     * let computerChoice = 1
+//     * let userChoice = 1
+//     *
+//     * computerChoice % 3 + 1 == userChoice ?
+//     * 1 % 3 => 1
+//     * 1 + 1 => 2
+//     * Is 2 == 1 ? => False
+//     *
+//     * check else if
+//     * userChoice % 3 + 1 == computerChoice
+//     * 1 % 3 => 1
+//     * 1 + 1 => 2
+//     * Is 2 == 1 ? => false
+//     *
+//     * It's a tie.
+//     */
+//
+//   if (cChoice % 3 + 1 == uChoice) {
+//       cout << "USER WINS" << endl;
+//       *uScore += 1;
+//   }
+//   else if (uChoice % 3 + 1 == cChoice) {
+//       cout << "USERS LOSES" << endl;
+//       *cScore += 1;
+//   } else {
+//       cout << "IT'S A TIE!"  << endl;
+//   }
+//   cout << endl;
+//}
 
-   if (cChoice % 3 + 1 == uChoice) {
-       cout << "USER WINS" << endl;
-       *uScore += 1;
+void determineWinner(int uChoice, int cChoice, int* uScore, int* cScore) {
+   if(uChoice == -1) {
+       return;
    }
-   else if (uChoice % 3 + 1 == cChoice) {
-       cout << "USERS LOSES" << endl;
-       *cScore += 1;
-   } else {
-       cout << "IT'S A TIE!"  << endl;
+   if (uChoice == 1) {
+       switch(cChoice) {
+           case 1:
+               cout << "IT'S A TIE!" << endl;
+               break;
+           case 2:
+               cout << "USER LOSES" << endl;
+               *cScore += 1;
+               break;
+           case 3:
+               cout << "USER WINS" << endl;
+               *uScore += 1;
+               break;
+           default:
+               break;
+       }
    }
-   cout << endl;
+    if (uChoice == 2) {
+        switch(cChoice) {
+            case 1:
+                cout << "USER WINS" << endl;
+                *uScore += 1;
+                break;
+            case 2:
+                cout << "IT'S A TIE" << endl;
+                break;
+            case 3:
+                cout << "USER LOSES" << endl;
+                *cScore += 1;
+                break;
+            default:
+                break;
+        }
+    }
+    if (uChoice == 3) {
+        switch (cChoice) {
+            case 1:
+                cout << "USER LOSES" << endl;
+                *cScore += 1;
+                break;
+            case 2:
+                cout << "USER WINS" << endl;
+                *uScore += 1;
+                break;
+            case 3:
+                cout << "IT'S A TIE" << endl;
+                break;
+            default:
+                break;
+        }
+    }
 }
