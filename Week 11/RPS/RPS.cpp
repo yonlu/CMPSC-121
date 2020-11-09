@@ -26,44 +26,19 @@ int main() {
         getUserSelection(&userChoice);
         computerChoice = dist(rd);
         if (userChoice > 0 && userChoice < 4) {
-            switch (userChoice) {
-                case 1:
-                    cout << "user chooses rock, ";
-                    break;
-                case 2:
-                    cout << "user chooses paper, ";
-                    break;
-                case 3:
-                    cout << "user chooses scissors, ";
-                default:
-                    break;
-            }
-            switch (computerChoice) {
-                case 1:
-                    cout << "computer chooses rock." << endl;
-                    break;
-                case 2:
-                    cout << "computer chooses paper." << endl;
-                    break;
-                case 3:
-                    cout << "computer chooses scissors." << endl;
-                    break;
-                default:
-                    break;
-            }
             determineWinner(userChoice, computerChoice, &userScore, &computerScore);
+            cout << endl;
         }
     }
 
-    cout << endl;
-    cout << "GAME OVER" << endl;
+    cout << "\nGAME OVER" << endl;
     if (userScore > computerScore) {
-        cout << "The user wins with a score of " << userScore << " to " << computerScore << ".";
+        cout << "The user wins with a score of " << userScore << " to " << computerScore << "." << endl;
     }
     else if (userScore < computerScore) {
-        cout << "The computer wins with a score of " << computerScore << " to " << userScore << ".";
+        cout << "The computer wins with a score of " << computerScore << " to " << userScore << "." << endl;
     } else {
-        cout << "It's a tie! With a score of " << userScore << " to " << computerScore << ".";
+        cout << "It's a tie! With a score of " << userScore << " to " << computerScore << "." << endl;
     }
 
     return 0;
@@ -86,89 +61,29 @@ void getUserSelection(int* choice) {
         *choice = userInput;
     } else {
         *choice = userInput;
-       cout << "Please enter a valid choice."
+       cout << "\nPlease enter a valid choice."
        << " (1: rock, 2: paper, 3: scissors, -1: quit)" << endl;
     }
 }
-
-//void determineWinner(int uChoice, int cChoice, int* uScore, int* cScore) {
-//    if(uChoice == -1) {
-//        return;
-//    }
-//    /*
-//     * User wins Scenario:
-//     * let computerChoice = 3
-//     * let userChoice = 1
-//     *
-//     * computerChoice % 3 + 1 == userChoice ?
-//     * 3 % 3 => 0
-//     * 0 + 1 => 1
-//     * Is 1 == 1 ? => True
-//     * User wins.
-//     *
-//     *
-//     * User loses Scenario:
-//     * let computerChoice = 1
-//     * let userChoice = 3
-//     *
-//     * computerChoice % 3 + 1 == userChoice ?
-//     * 1 % 3 => 1
-//     * 1 + 1 => 2
-//     * Is 2 == 3 ? => False
-//     *
-//     * check else if
-//     * userChoice % 3 + 1 == computerChoice
-//     * 3 % 3 => 0
-//     * 0 + 1 => 1
-//     * Is 1 == 1 ? => True
-//     *
-//     * Users loses.
-//     *
-//     * It's a tie Scenario:
-//     * let computerChoice = 1
-//     * let userChoice = 1
-//     *
-//     * computerChoice % 3 + 1 == userChoice ?
-//     * 1 % 3 => 1
-//     * 1 + 1 => 2
-//     * Is 2 == 1 ? => False
-//     *
-//     * check else if
-//     * userChoice % 3 + 1 == computerChoice
-//     * 1 % 3 => 1
-//     * 1 + 1 => 2
-//     * Is 2 == 1 ? => false
-//     *
-//     * It's a tie.
-//     */
-//
-//   if (cChoice % 3 + 1 == uChoice) {
-//       cout << "USER WINS" << endl;
-//       *uScore += 1;
-//   }
-//   else if (uChoice % 3 + 1 == cChoice) {
-//       cout << "USERS LOSES" << endl;
-//       *cScore += 1;
-//   } else {
-//       cout << "IT'S A TIE!"  << endl;
-//   }
-//   cout << endl;
-//}
 
 void determineWinner(int uChoice, int cChoice, int* uScore, int* cScore) {
    if(uChoice == -1) {
        return;
    }
    if (uChoice == 1) {
+       cout << "user chooses rock, ";
        switch(cChoice) {
            case 1:
+               cout << "computer chooses rock." << endl;
                cout << "IT'S A TIE!" << endl;
                break;
            case 2:
-               cout << "USER LOSES" << endl;
+               cout << "computer chooses paper." << endl;
+               cout << "COMPUTER WINS" << endl;
                *cScore += 1;
                break;
            case 3:
+               cout << "computer chooses scissors." << endl;
                cout << "USER WINS" << endl;
                *uScore += 1;
                break;
@@ -176,34 +91,42 @@ void determineWinner(int uChoice, int cChoice, int* uScore, int* cScore) {
                break;
        }
    }
-    if (uChoice == 2) {
+   else if (uChoice == 2) {
+        cout << "user chooses paper, ";
         switch(cChoice) {
             case 1:
+                cout << "computer chooses rock." << endl;
                 cout << "USER WINS" << endl;
                 *uScore += 1;
                 break;
             case 2:
+                cout << "computer chooses paper." << endl;
                 cout << "IT'S A TIE" << endl;
                 break;
             case 3:
-                cout << "USER LOSES" << endl;
+                cout << "computer chooses scissors." << endl;
+                cout << "COMPUTER WINS" << endl;
                 *cScore += 1;
                 break;
             default:
                 break;
         }
     }
-    if (uChoice == 3) {
+    else if (uChoice == 3) {
+        cout << "user chooses scissors, ";
         switch (cChoice) {
             case 1:
-                cout << "USER LOSES" << endl;
+                cout << "computer chooses rock." << endl;
+                cout << "COMPUTER WINS" << endl;
                 *cScore += 1;
                 break;
             case 2:
+                cout << "computer chooses paper." << endl;
                 cout << "USER WINS" << endl;
                 *uScore += 1;
                 break;
             case 3:
+                cout << "computer chooses scissors." << endl;
                 cout << "IT'S A TIE" << endl;
                 break;
             default:
