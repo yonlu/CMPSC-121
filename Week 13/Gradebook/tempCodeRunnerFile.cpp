@@ -1,0 +1,2 @@
+
+    limit += assignment.pointsWorth;
