@@ -1,13 +1,37 @@
 #include <iostream>
 #include <cstring>
 
-using namespace std;
-
 int main() {
-    char arr[] = "Four score and seven years ago";
-    char *strPtr = nullptr;
+    const int NUM_PRODS = 5;
+    const int LENGTH = 27;
 
-    cout << arr << endl;
-    cout << *(arr + 3) << endl;
-    strPtr = strstr(arr, "seven");
+    char products[NUM_PRODS][LENGTH] = {
+            "TV327 31-inch Television",
+            "CD257 CD Player",
+            "TA677 Answering Machine",
+            "CS109 Car Stereo",
+    };
+
+    char lookUp[LENGTH];
+    char* strPtr = nullptr;
+    int i;
+
+    std::cout << "\tProduct Database\n\n";
+    std::cout << "Enter a product number to search for: ";
+    std::cin.getline(lookUp, LENGTH);
+
+    for (i = 0; i < NUM_PRODS; i++) {
+        strPtr = strstr(products[i], lookUp);
+        if (strPtr != nullptr) {
+            break;
+        }
+    }
+
+    if (strPtr != nullptr) {
+        std::cout << products[i] << std::endl;
+    } else {
+        std::cout << "No matching product was found.\n";
+    }
+
+    return 0;
 }
